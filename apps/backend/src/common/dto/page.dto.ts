@@ -24,7 +24,6 @@ export class PaginateDto {
   @IsOptional()
   @IsInt()
   @Min(1)
-  @Min(100)
   @Type(() => Number)
   pageSize?: number = 10;
 

@@ -33,22 +33,22 @@ export class LoginService {
   async createImageCaptcha(captcha: ImageCaptchaDto): Promise<ImageCaptcha> {
     const svg = svgCaptcha.create({
       size: 4,
-      color: true,
+      color: false,
       noise: 4,
       width: isEmpty(captcha.width) ? 100 : captcha.width,
-      height: isEmpty(captcha.height) ? 50 : captcha.height,
-      charPreset: '1234567890',
+      height: isEmpty(captcha.height) ? 38 : captcha.height,
+      charPreset: '1234567890abcdefghkmnpqrstuvwxyz',
     });
     const result = {
-      img: `data:image/svg+xml;base64,${Buffer.from(svg.data).toString(
+      captcha: `data:image/svg+xml;base64,${Buffer.from(svg.data).toString(
         'base64',
       )}`,
-      id: generateUUID(),
+      c_id: generateUUID(),
     };
     // 5分钟过期时间
     await this.redisService
       .getRedis()
-      .set(`admin:captcha:img:${result.id}`, svg.text, 'EX', 60 * 5);
+      .set(`admin:captcha:img:${result.c_id}`, svg.text, 'EX', 60 * 5);
     return result;
   }
 

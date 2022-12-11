@@ -17,8 +17,8 @@ import { UploadModule } from './upload/upload.module';
       {
         path: '',
         children: [
-          { path: 'account', module: AccountModule },
-          { path: 'sys', module: SystemModule },
+          { path: 'user', module: AccountModule },
+          { path: 'admin_user', module: SystemModule },
           { path: 'tools', module: ToolsModule },
           { path: 'upload', module: UploadModule },
         ],

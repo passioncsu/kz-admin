@@ -9,7 +9,6 @@ import {
   MenuCreateDto,
   MenuDeleteDto,
   MenuInfoDto,
-  MenuSearchDto,
   MenuUpdateDto,
 } from './menu.dto';
 import { SysMenuService } from './menu.service';

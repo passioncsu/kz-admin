@@ -21,7 +21,7 @@ import { Ip } from '@/common/decorators';
 export class LoginController {
   constructor(private loginService: LoginService) {}
 
-  @Get('captcha/img')
+  @Get('/tools/captcha')
   @ApiOperation({ summary: '获取登录图片验证码' })
   @ApiResult({ type: ImageCaptcha })
   @SkipAuth()
@@ -45,7 +45,7 @@ export class LoginController {
     }
   }
 
-  @Post('login')
+  @Post('/user/login')
   @ApiOperation({ summary: '登录' })
   @ApiResult({ type: LoginToken })
   @SkipAuth()

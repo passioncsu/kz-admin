@@ -39,7 +39,7 @@ export class AuthGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest<FastifyRequest>();
 
-    const token = request.headers['authorization']?.replace('Bearer ', '');
+    const token = request.headers['token'] as string;
     if (isEmpty(token)) {
       throw new ApiException(ErrorEnum.CODE_1101);
     }
