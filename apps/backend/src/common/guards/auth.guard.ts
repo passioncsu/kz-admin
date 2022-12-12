@@ -75,14 +75,14 @@ export class AuthGuard implements CanActivate {
     );
     if (pv !== `${request.authUser.pv}`) {
       // 密码版本不一致，登录期间已更改过密码
-      throw new ApiException(ErrorEnum.CODE_1102);
+      throw new ApiException(ErrorEnum.CODE_401);
     }
     const redisToken = await this.loginService.getRedisTokenById(
       request.authUser.uid,
     );
     if (token !== redisToken) {
       // 与redis保存不一致
-      throw new ApiException(ErrorEnum.CODE_1102);
+      throw new ApiException(ErrorEnum.CODE_401);
     }
     // 注册该注解，Api则放行检测
     const notNeedPerm = this.reflector.get<boolean>(
